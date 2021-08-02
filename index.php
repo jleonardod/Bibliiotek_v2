@@ -28,11 +28,11 @@
               <form name="form-ingreso" id="form-ingreso" method="POST">
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
-                    <input type="text" name="nombreUsuario" id="email" class="form-control" placeholder="Dirección de Email" autocomplete="off">
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Dirección de Email" autocomplete="off">
                   </div>
                   <div class="form-group mb-4">
                     <label for="password" class="sr-only">Contraseña</label>
-                    <input type="password" name="passwordUsuario" id="password" class="form-control" placeholder="***********">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="***********">
                   </div>
                   <!--<input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">-->
                   <button type="button" id="btnFetch" class="btn btn-block login-btn mb-4">Ingresar</button>
@@ -58,12 +58,107 @@
 <script>
   $(document).ready(function() {
     $("#btnFetch").click(function() {
-      // disable button
-      $(this).prop("disabled", true);
-      // add spinner to button
-      $(this).html(
-        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando`
-      );
+      nombreUsuario = document.getElementById("email").value;
+      passwordUsuario = document.getElementById("password").value
+      formData = new FormData();
+      formData.append("nombreUsuario", nombreUsuario);
+      formData.append("passwordUsuario", passwordUsuario);
+      $.ajax({
+        url: "html/application/consultas/login.php",
+        method: "POST", 
+        data: formData,
+        contentType: false, 
+        cache: false, 
+        processData: false,
+        beforeSend: function(){
+          // disable button
+          $("#btnFetch").prop("disabled", true);
+          // add spinner to button
+          $("#btnFetch").html(
+            `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...`
+          );
+        }, 
+        success: function(data){
+          //console.log(data);
+          resultado = JSON.parse(data);
+          item = resultado['item'];
+          mensaje = resultado['mensaje'];
+
+          if(typeof item === 'undefined'){
+            alert("Usuario y/o contraseña invalidos");
+          }else{
+            elemento = item[0];
+            idLogin = elemento['idLogin'];
+            idUsuario = elemento['idUsuario'];
+            idPerfil = elemento['idPerfil'];
+            estado = elemento['estado'];
+
+            if(estado != 1){
+              alert("Usuario inactivo");
+            }else{
+              
+              formData_Perfil = new FormData();
+              formData_Perfil.append("idPerfil", idPerfil);
+
+              $.ajax({
+                url: "html/application/consultas/permisos.php",
+                method: "POST",
+                data: formData_Perfil,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data){
+                  resultado = JSON.parse(data);
+                  item = resultado['item'];
+                  mensaje = resultado['mensaje'];
+
+                  let permisos = [];
+
+                  if(typeof item === 'undefined'){
+                    alert("Ha ocurrido un problema, por favor contactese con el administrador");
+                  }else{
+                    for(i = 0; i<item.length; i++){
+                      elemento = item[i];
+                      idPermiso = elemento['idPermiso'];
+
+                      permisos.push(idPermiso);
+                    }
+
+                    formData_sesion = new FormData();
+
+                    formData_sesion.append("idLogin", idLogin);
+                    formData_sesion.append("idUsuario", idUsuario);
+                    formData_sesion.append("idPerfil", idPerfil);
+                    formData_sesion.append("estado", estado);
+                    formData_sesion.append("permisos", permisos);
+
+                    $.ajax({
+                      url: "html/application/consultas/sesion.php",
+                      method: "POST",
+                      data: formData_sesion,
+                      contentType: false,
+                      cache: false, 
+                      processData: false,
+                      success: function(data){
+                        // disable button
+                        $("#btnFetch").prop("disabled", false);
+                        // add spinner to button
+                        $("#btnFetch").html(
+                          `Bienvenid@`
+                        );
+
+                        window.location=("html/pages/dashboard.php");
+                      }
+                    })
+
+                  }
+                }
+              })
+            }
+          }
+        }
+      })
+      
     });
   });
 </script>
