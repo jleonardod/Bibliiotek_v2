@@ -23,6 +23,7 @@
         <div id="content">
           <?php
           include('../components/topbar.php');
+          include('../components/content-dashboard.php');
           ?>
         </div>
       </div>
