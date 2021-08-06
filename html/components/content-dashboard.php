@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Inicio</h1>
@@ -123,6 +124,63 @@
             <span class="mr-2">
               <i class="fas fa-circle text-info"></i>Seccion 3
             </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Calendario</h6>
+        </div>
+        <div class="card-body">
+            <div id="calendar"></div>
+            <div style='clear:both'></div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-5">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Interacción</h6>
+          
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre de Usuario</th>
+                  <th>Tiempo afiliado</th>
+                  <th>Ult. vez</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>1</th>
+                  <th>abc</th>
+                  <th>6 meses</th>
+                  <th>Ayer</th>
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <th>abc</th>
+                  <th>1 año</th>
+                  <th>Hoy</th>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <th>abc</th>
+                  <th>1 mes</th>
+                  <th>Hace 2 Semanas</th>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
