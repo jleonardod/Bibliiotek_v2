@@ -10,7 +10,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Clientes</div>
-              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800">12345</div>
+              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800" id="conteoClientes"></div>
             </div>
             <div class="col-auto">
               <i class="fas fa-user-tag fa-2x text-gray-300"></i>
@@ -25,7 +25,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Usuarios</div>
-              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800">12345</div>
+              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800" id="conteoUsuarios"></div>
             </div>
             <div class="col-auto">
               <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -40,7 +40,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Libros</div>
-              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800">12345</div>
+              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800" id="conteoLibros"></div>
             </div>
             <div class="col-auto">
               <i class="fas fa-book fa-2x text-gray-300"></i>
@@ -55,7 +55,7 @@
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Donaciones</div>
-              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800">$12,345</div>
+              <div class="h5 mb-0 font-weight font-weight-bold text-gray-800">$</div>
             </div>
             <div class="col-auto">
               <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="chart-area">
+          <div class="chart-area" id="contGrafica">
             <canvas id="myAreaChart"></canvas>
           </div>
         </div>
