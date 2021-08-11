@@ -131,24 +131,6 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>1</th>
-                  <th>abc</th>
-                  <th>6 meses</th>
-                  <th>Ayer</th>
-                </tr>
-                <tr>
-                  <th>2</th>
-                  <th>abc</th>
-                  <th>1 año</th>
-                  <th>Hoy</th>
-                </tr>
-                <tr>
-                  <th>3</th>
-                  <th>abc</th>
-                  <th>1 mes</th>
-                  <th>Hace 2 Semanas</th>
-                </tr>
               </tbody>
             </table>
           </div>

@@ -140,17 +140,27 @@
                       cache: false, 
                       processData: false,
                       success: function(data){
-                        // disable button
-                        $("#btnFetch").prop("disabled", false);
-                        // add spinner to button
-                        $("#btnFetch").html(
-                          `Bienvenid@`
-                        );
 
-                        window.location=("html/pages/dashboard.php");
+                        formData_guardado = new FormData();
+                        formData_guardado.append("idUsuario", idUsuario);
+
+                        $.ajax({
+                          url: "html/application/consultas/guardadoLogin.php",
+                          method: "POST",
+                          data: formData_guardado,
+                          contentType: false,
+                          cache: false,
+                          processData: false,
+                          success: function(data){
+                            $("#btnFetch").prop("disabled", false);
+                            $("#btnFetch").html(
+                              `Bienvenid@`
+                            );
+                            window.location=("html/pages/dashboard.php");
+                          }
+                        })
                       }
                     })
-
                   }
                 }
               })
@@ -158,7 +168,6 @@
           }
         }
       })
-      
     });
   });
 </script>

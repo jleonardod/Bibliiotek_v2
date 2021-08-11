@@ -17,5 +17,20 @@ class Login extends DB{
 
     return $query;
   }
+
+  function crearLogLogin($idUsuario, $fechaHora){
+
+    $query = $this->connect()->query("INSERT INTO log_logins (idUsuario, fechaHora) VALUES ($idUsuario, '$fechaHora')");
+    $query = $this->connect()->query("SELECT * FROM log_logins ORDER BY idLogLogin DESC LIMIT 1");
+
+    return $query;
+  }
+
+  function conteoLogins(){
+
+    $query = $this->connect()->query("SELECT idUsuario, COUNT(idUsuario) AS total FROM log_logins GROUP BY idUsuario ORDER BY total DESC LIMIT 3");
+    
+    return $query;
+  }
 }
 ?>

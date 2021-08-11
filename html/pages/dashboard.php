@@ -252,5 +252,42 @@
         }
       }
     })
+
+    $.ajax({
+      url: "../../html/application/consultas/conteoLogins.php",
+      contentType: false,
+      cache: false, 
+      processData: false,
+      success: function(data){
+        resultado = JSON.parse(data);
+        item = resultado['item'];
+        mensaje = resultado['mensaje'];
+
+        if(typeof item === 'undefined'){
+          console.log("Error al traer los datos");
+        }else{
+          for(i = 0; i<item.length; i++){
+
+            formData_usuario = new FormData();
+
+            idUsuario = item[i];
+            idUsuario = idUsuario["idUsuario"];
+
+            formData_usuario.append("idUsuario", idUsuario);
+            $.ajax({
+              url: "../../html/application/consultas/getUsuario",
+              method: "POST",
+              data: formData_usuario,
+              contentType: false,
+              cache: false,
+              processData: false,
+              success: function(data_usuarios){
+                console.log(data_usuarios)
+              }
+            })
+          }
+        }
+      }
+    })
   });
 </script>

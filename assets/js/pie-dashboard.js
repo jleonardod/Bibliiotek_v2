@@ -7,7 +7,16 @@ function datos(){
     cache: false,
     processData: false,
     success: function(data){
-      console.log(data);
+      resultado = JSON.parse(data);
+      item = resultado["item"];
+      mensaje = resultado["mensaje"];
+
+      for(i = 0; i<item.length; i++){
+        cantidad = item[i];
+        cantidad = cantidad["cantidad"];
+        
+        asignacion.push(cantidad);
+      }
     }
   })
 
@@ -23,7 +32,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral"],
+    labels: ["Librerias", "Biblioteca"],
     datasets: [{
       data: datos(),
       backgroundColor: ['#4e73df', '#1cc88a'],
