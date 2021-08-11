@@ -23,5 +23,28 @@ class ApiLibro{
       echo json_encode(array('mensaje' => 'No hay elementos registrados'));
     }
   }
+
+  function getAsignacionLibros(){
+    $libro = new Libro();
+    $libros = array();
+    $libros["item"] = array();
+
+    for($i = 1; $i < 3; $i++){
+      $res = $libro->obtenerAsignacionLibros($i);
+
+      if($res -> rowCount()){
+        while($row = $res->fetch(PDO::FETCH_ASSOC)){
+          $cantidadAsignados = $row["cantidadAsignados"];
+        }
+      }
+
+      $item = array(
+        'cantidad' => $cantidadAsignados
+      );
+
+      array_push($libros["item"], $item);
+    }
+    echo json_encode($libros);
+  }
 }
 ?>

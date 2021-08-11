@@ -10,5 +10,12 @@ class Libro extends DB{
 
     return $query;
   }
+
+  function obtenerAsignacionLibros($clasificacionCliente){
+
+    $query = $this->connect()->query("SELECT COUNT(l.idLibro) AS cantidadAsignados FROM libros l INNER JOIN clientes c ON l.idCliente = c.idCliente WHERE c.tipoCliente = $clasificacionCliente");
+
+    return $query;
+  }
 }
 ?>
