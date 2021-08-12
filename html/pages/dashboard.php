@@ -282,7 +282,30 @@
               cache: false,
               processData: false,
               success: function(data_usuarios){
-                console.log(data_usuarios)
+
+                resultado = JSON.parse(data_usuarios);
+
+                item = resultado['item'];
+                mensaje = resultado['mensaje'];
+                
+                if(typeof item === 'undefined'){
+                  console.log("Error al traer los datos");
+                }else{
+
+                  usuario = item[0];
+
+                  idUsuario = usuario["idUsuario"];
+                  nombre = usuario["nombre"];
+                  apellido = usuario["apellido"];
+                  fechaAfiliacion = usuario["fechaAfiliacion"];
+
+                  nombreUsuario = nombre+" "+apellido;
+
+                  console.log(idUsuario);
+                  $("#tablaClientes").html(
+                    "<tr><td>"+idUsuario+"</td><td>"+nombreUsuario+"</td><td>"+fechaAfiliacion+"</td><td>a</td></tr>"
+                  );
+                }
               }
             })
           }

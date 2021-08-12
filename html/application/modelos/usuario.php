@@ -10,5 +10,12 @@ class Usuario extends DB{
 
     return $query;
   }
+
+  function obtenerUsuario($idUsuario){
+
+    $query = $this->connect()->query("SELECT * FROM usuarios WHERE idUsuario = $idUsuario");
+
+    return $query;
+  }
 }
 ?>

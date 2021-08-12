@@ -130,7 +130,7 @@
                   <th>Ult. vez</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="tablaClientes">
               </tbody>
             </table>
           </div>
