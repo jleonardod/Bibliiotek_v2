@@ -78,6 +78,20 @@
 </html>
 <script>
   $(document).ready(function(){
+
+    $.ajax({
+      url: "../../html/application/consultas/validarSesion.php",
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function(data){
+        console.log(data);
+        if(data == 0){
+          window.location=("../../index.php");
+        }
+      }
+    })
+
     date = new Date();
     d = date.getDate();
     m = date.getMonth();
@@ -320,7 +334,6 @@
                         fechaHora = item[0];
                         fechaHora = fechaHora["fechaHora"];
 
-                        console.log(fechaHora);
                         nombreUsuario = nombre+" "+apellido;
 
                         fecha = new Date();
