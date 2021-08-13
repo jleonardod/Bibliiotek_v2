@@ -161,7 +161,7 @@
           Log de Actividades
         </a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onClick="cerrarSesion()">
           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
           Cerrar Sesion
         </a>
@@ -169,3 +169,18 @@
     </li>
   </ul>
 </nav>
+<script>
+  function cerrarSesion(){
+    $.ajax({
+      url: "../../html/application/consultas/cerrarSesion.php",
+      contentType: false, 
+      cache: false, 
+      processData: false,
+      success: function(data){
+        if(data == 0){
+          window.location=("../../index.php");
+        }
+      }
+    })
+  }
+</script>

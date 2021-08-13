@@ -85,7 +85,6 @@
       cache: false,
       processData: false,
       success: function(data){
-        console.log(data);
         if(data == 0){
           window.location=("../../index.php");
         }
