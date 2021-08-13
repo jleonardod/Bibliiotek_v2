@@ -32,5 +32,12 @@ class Login extends DB{
     
     return $query;
   }
+
+  function ultimaFechaLogin($idUsuario){
+
+    $query = $this->connect()->query("SELECT fechaHora FROM log_logins WHERE idUsuario = $idUsuario ORDER BY idLogLogin DESC LIMIT 1");
+
+    return $query;
+  }
 }
 ?>

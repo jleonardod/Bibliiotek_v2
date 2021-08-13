@@ -88,5 +88,25 @@ class ApiLogin{
       echo json_encode(array('mensaje' => 'No hay elementos registrados'));
     }
   }
+
+  function getFechaLogin($idUsuario){
+    $login = new Login();
+    $logins = array();
+    $logins["item"] = array();
+
+    $res = $login->ultimaFechaLogin($idUsuario);
+
+    if($res -> rowCount()){
+      while($row = $res->fetch(PDO::FETCH_ASSOC)){
+        $item = array(
+          'fechaHora' => $row["fechaHora"]
+        );
+        array_push($logins["item"], $item);
+      }
+      echo json_encode($logins);
+    }else{
+      echo json_encode(array('mensaje' => 'No hay elementos registrados'));
+    }
+  }
 }
 ?>

@@ -73,6 +73,7 @@
     <script src="../../assets/js/area-dashboard.js"></script>
     <script src="../../assets/js/pie-dashboard.js"></script>
     <script src="../../assets/js/calendar.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
   </body>
 </html>
 <script>
@@ -299,12 +300,47 @@
                   apellido = usuario["apellido"];
                   fechaAfiliacion = usuario["fechaAfiliacion"];
 
-                  nombreUsuario = nombre+" "+apellido;
+                  $.ajax({
+                    url: "../../html/application/consultas/getFechaConexion.php",
+                    method: "POST",
+                    data: formData_usuario,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
 
-                  console.log(idUsuario);
-                  $("#tablaClientes").html(
-                    "<tr><td>"+idUsuario+"</td><td>"+nombreUsuario+"</td><td>"+fechaAfiliacion+"</td><td>a</td></tr>"
-                  );
+                    success: function(data_login){
+                      resultado = JSON.parse(data_login);
+
+                      item = resultado["item"];
+                      mensaje = resultado["mensaje"];
+
+                      if(typeof item === 'undefined'){
+                        console.log("Error al traer los datos");
+                      }else{
+                        fechaHora = item[0];
+                        fechaHora = fechaHora["fechaHora"];
+
+                        console.log(fechaHora);
+                        nombreUsuario = nombre+" "+apellido;
+
+                        fecha = new Date();
+                        anio = fecha.getFullYear();
+                        mes = fecha.getMonth();
+                        dia = fecha.getDate();
+
+                        fechaActual = anio+"-"+mes+"-"+dia;
+
+                        fechaAfiliacion = moment(fechaAfiliacion);
+                        fechaActual = moment(fechaActual);
+
+                        tiempoAfiliado = fechaAfiliacion.diff(fechaActual, 'days')+' Dias';
+
+                        $("#tablaClientes").html(
+                          "<tr><td>"+idUsuario+"</td><td>"+nombreUsuario+"</td><td>"+tiempoAfiliado+"</td><td>"+fechaHora+"</td></tr>"
+                        );
+                      }
+                    }
+                  })
                 }
               }
             })
