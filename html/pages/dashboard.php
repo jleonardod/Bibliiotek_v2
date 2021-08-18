@@ -360,5 +360,39 @@
         }
       }
     })
+
+    $.ajax({
+      url: "../../html/application/consultas/getPermisos.php",
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function(data){
+        permisos = [];
+        resultado = Array.from(data);
+
+        for (i=0; i<resultado.length; i++){
+          if(!isNaN(resultado[i])){
+            permisos.push(resultado[i]);
+          }
+        }
+
+        clientes = permisos.indexOf("1");
+
+        if(clientes != -1){
+          $('#clientes_menu').html(`<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-book-reader"></i>
+          <span>Clientes</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledy="headingTwo" data-parient="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">            
+            <h6 class="collapse-header">Instituciones</h6>
+            <a class="collapse-item" href="bibliotecas.php">Bibliotecas</a>
+            <a class="collapse-item" href="librerias.php">Librerias</a>
+          </div>
+        </div>`)
+        }
+      }
+    })
   });
 </script>

@@ -17,19 +17,8 @@
       <div class="sidebar-heading">
         Comercial
       </div>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-          aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-book-reader"></i>
-          <span>Clientes</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledy="headingTwo" data-parient="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">            
-            <h6 class="collapse-header">Instituciones</h6>
-            <a class="collapse-item" href="bibliotecas.php">Bibliotecas</a>
-            <a class="collapse-item" href="librerias.php">Librerias</a>
-          </div>
-        </div>
+      <li class="nav-item" id="clientes_menu" name="clientes_menu">
+        
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
